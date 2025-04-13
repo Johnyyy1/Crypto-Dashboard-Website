@@ -4,6 +4,7 @@ import CreativeCryptoHero from './components/home/Hero';
 import Featured from './components/home/Featured';
 import SignUp from './components/sign/SignUp';
 import SignIn from './components/sign/SignIn';
+import Footer from './components/layout/Footer';
 
 export default function App() {
   const [showSignUp, setShowSignUp] = useState(false);
@@ -32,6 +33,7 @@ export default function App() {
       />
       <CreativeCryptoHero />
       <Featured />
+      <Footer />
 
       {/* Sign Up Modal */}
       {showSignUp && (
