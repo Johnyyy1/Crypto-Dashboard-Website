@@ -227,7 +227,6 @@ const CryptoCard = () => {
   );
 };
 
-// Helper function to format large numbers
 const formatLargeNumber = (num) => {
   if (num >= 1e9) {
     return (num / 1e9).toFixed(2) + 'B';

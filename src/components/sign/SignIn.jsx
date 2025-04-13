@@ -21,10 +21,8 @@ export default function SignIn({ onSuccess }) {
     
     try {
       setIsLoading(true);
-      // Mock authentication - In a real app you would connect to your backend
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network request
+      await new Promise(resolve => setTimeout(resolve, 1000)); 
       
-      // Login success - redirect to dashboard or call onSuccess callback
       if (onSuccess) {
         onSuccess();
       } else {
@@ -124,8 +122,8 @@ export default function SignIn({ onSuccess }) {
           Don't have an account?{' '}
           <button 
             onClick={() => {
-              if (onSuccess) onSuccess(); // Close this modal first
-              setTimeout(() => navigate('/signup'), 100); // Navigate or trigger signup modal
+              if (onSuccess) onSuccess(); 
+              setTimeout(() => navigate('/signup'), 100); 
             }}
             className="text-blue-600 hover:text-blue-800 font-medium transition-colors"
           >
