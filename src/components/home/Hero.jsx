@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ChevronRight, Eye, EyeOff, ArrowRight, ArrowUpRight, ChevronDown, Menu } from 'lucide-react';
 
-
 export default function CreativeCryptoHero() {
   const [isHovered, setIsHovered] = useState(false);
   const [hideBalance, setHideBalance] = useState(false);
