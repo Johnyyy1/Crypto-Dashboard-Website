@@ -248,7 +248,7 @@ export default function CreativeCryptoHero() {
               </div>
               <div>
                 <p className="text-gray-700 font-medium">Market Alert</p>
-                <p className="text-sm text-gray-600">Solana (SOL) has increased by 8% in the last hour</p>
+                <p className="text-sm text-gray-600">Solana (SOL) has increased by -- in the last hour</p>
               </div>
             </div>
           </div>
