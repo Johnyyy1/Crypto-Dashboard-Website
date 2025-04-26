@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';  // No need for BrowserRouter here
 import Navbar from './components/layout/Navbar';
 import CreativeCryptoHero from './components/home/Hero';
 import Featured from './components/home/Featured';
 import SignUp from './components/sign/SignUp';
 import SignIn from './components/sign/SignIn';
 import Footer from './components/layout/Footer';
+import CoinDetail from './components/home/CoinDetail';
 
 export default function App() {
   const [showSignUp, setShowSignUp] = useState(false);
@@ -34,6 +36,10 @@ export default function App() {
       <CreativeCryptoHero />
       <Featured />
       <Footer />
+
+      <Routes>
+        <Route path="/coin/:id" element={<CoinDetail />} />  {/* Coin details route */}
+      </Routes>
 
       {/* Sign Up Modal */}
       {showSignUp && (

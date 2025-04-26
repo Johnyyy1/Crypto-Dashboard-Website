@@ -265,7 +265,7 @@ export default function CreativeCryptoHero() {
               </div>
               <div>
                 <p className="text-gray-700 font-medium">Portfolio Analysis</p>
-                <p className="text-sm text-gray-600">Your portfolio has outperformed the market by 12% this month</p>
+                <p className="text-sm text-gray-600">Your portfolio has outperformed the market by -- this month</p>
               </div>
             </div>
             

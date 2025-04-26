@@ -34,7 +34,6 @@ const CryptoCard = () => {
   }, []);
 
   const getChartData = (prices, priceChange) => {
-    // Change color based on price direction
     const borderColor = priceChange >= 0 ? '#34D399' : '#F87171'; // Green for increase, red for decrease
     const backgroundColor = priceChange >= 0 ? 'rgba(52, 211, 153, 0.2)' : 'rgba(248, 113, 113, 0.2)';
 
@@ -101,11 +100,12 @@ const CryptoCard = () => {
           <p className="text-red-500 font-medium text-lg mb-2">Error loading data</p>
           <p className="text-gray-600">{error}</p>
           <button 
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-            onClick={() => window.location.reload()}
-          >
-            Retry
-          </button>
+            className="mt-4 px-6 py-2 bg-gray-900 text-white font-semibold rounded-lg shadow-md transform transition-all duration-300 hover:bg-gray-800 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50"
+            onClick={() => window.location.reload()}>Retry</button>
+
+
+
+
         </div>
       </div>
     );
@@ -113,7 +113,6 @@ const CryptoCard = () => {
 
   return (
     <div className="bg-white min-h-screen w-full overflow-hidden relative px-4 py-8 md:px-8">
-      {/* Background pattern */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white bg-opacity-70 z-0 w-full"
         style={{
           backgroundImage: "radial-gradient(#d1d5db 1px, transparent 1px)",
@@ -121,26 +120,22 @@ const CryptoCard = () => {
         }}>
       </div>
       
-      {/* Gradient blobs for wider screens */}
       <div className="hidden md:block absolute top-1/2 right-1/4 h-96 w-96 rounded-full bg-gradient-to-r from-pink-100 to-blue-100 blur-3xl opacity-25"></div>
       <div className="hidden md:block absolute bottom-1/4 right-10 h-64 w-64 rounded-full bg-gradient-to-r from-emerald-100 to-teal-100 blur-3xl opacity-30"></div>
       <div className="hidden md:block absolute top-1/4 left-1/4 h-80 w-80 rounded-full bg-gradient-to-r from-amber-100 to-yellow-100 blur-3xl opacity-20"></div>
       <div className="hidden md:block absolute bottom-1/3 right-1/3 h-64 w-64 rounded-full bg-gradient-to-r from-blue-100 to-indigo-100 blur-3xl opacity-25"></div>
 
-      {/* Dashboard title */}
       <div className="text-center mb-8 relative z-10">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800">Crypto Dashboard</h1>
         <p className="text-gray-600 mt-2">Live cryptocurrency price tracker</p>
       </div>
 
-      {/* Crypto cards */}
       <div className="space-y-4 md:space-y-6 z-10 relative max-w-6xl mx-auto">
         {cryptoData.map(crypto => (
           <div
             key={crypto.id}
             className="bg-white border border-gray-100 rounded-xl p-4 md:p-6 shadow-md w-full mx-auto hover:shadow-lg transition-all"
           >
-            {/* Mobile layout - stacked */}
             <div className="md:hidden">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -182,7 +177,6 @@ const CryptoCard = () => {
               </div>
             </div>
 
-            {/* Desktop/tablet layout - row */}
             <div className="hidden md:flex md:items-center md:justify-between md:gap-4 lg:gap-6">
               <div className="flex items-center gap-4">
                 <div className="bg-blue-50 rounded-lg p-2 w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center">
@@ -219,6 +213,17 @@ const CryptoCard = () => {
                 <p>24h Volume:</p>
                 <p className="font-medium">${formatLargeNumber(crypto.total_volume)}</p>
               </div>
+            </div>
+            {/* Add your button here */}
+            <div className="text-center mt-4">
+            <button 
+  className="mt-4 px-6 py-2 bg-gradient-to-r from-gray-700 to-gray-800 text-white font-semibold rounded-lg shadow-lg transform transition-all duration-300 hover:bg-gradient-to-r hover:from-gray-600 hover:to-gray-700 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+  onClick={() => window.location.reload()}
+>
+  View Details
+</button>
+
+
             </div>
           </div>
         ))}
