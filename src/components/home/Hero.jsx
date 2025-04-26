@@ -8,6 +8,10 @@ export default function CreativeCryptoHero() {
   const [priceDirection, setPriceDirection] = useState(1);
   const [scrolled, setScrolled] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [solanaData, setSolanaData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
   
   // Simulate price movement
   useEffect(() => {
@@ -30,6 +34,31 @@ export default function CreativeCryptoHero() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+      const fetchSolana = async () => {
+        try {
+          setIsLoading(true);
+          const response = await fetch('https://api.coingecko.com/api/v3/coins/solana');
+          
+          if (!response.ok) {
+            throw new Error('Failed to fetch data');
+          }
+          
+          const data = await response.json();
+
+          setSolanaData(data);
+        } catch (err) {
+          setError(err.message);
+          console.error('Error fetching crypto data:', err);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      
+      fetchSolana();
+    }, []);
+
 
   return (
     <div className="bg-white min-h-screen w-full overflow-hidden relative">
@@ -248,8 +277,8 @@ export default function CreativeCryptoHero() {
               </div>
               <div>
                 <p className="text-gray-700 font-medium">Market Alert</p>
-                <p className="text-sm text-gray-600">Solana (SOL) has increased by -- in the last hour</p>
-              </div>
+                <p className="text-sm text-gray-600">Solana (SOL) has {solanaData.market_data?.price_change_percentage_24h >= 0 ? 'increased' : 'decreased'} by {Math.abs(solanaData.market_data?.price_change_percentage_24h.toFixed(2))}% in the last 24 hours</p>
+                </div>
             </div>
           </div>
         </div>
