@@ -9,20 +9,46 @@ export default function CreativeCryptoHero() {
   const [scrolled, setScrolled] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solanaData, setSolanaData] = useState([]);
+  const [bitcoinData, setBitcoinData] = useState([]);
+  const [bitcoinDayChange, setBitcoinDayChange] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   
   
   // Simulate price movement
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const change = Math.floor(Math.random() * 50) * priceDirection;
-      setCurrentPrice(prev => prev + change);
-      if (Math.random() > 0.7) setPriceDirection(prev => prev * -1);
-    }, 2000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     const change = Math.floor(Math.random() * 50) * priceDirection;
+  //     setCurrentPrice(prev => prev + change);
+  //     if (Math.random() > 0.7) setPriceDirection(prev => prev * -1);
+  //   }, 2000);
     
-    return () => clearInterval(interval);
-  }, [priceDirection]);
+  //   return () => clearInterval(interval);
+  // }, [priceDirection]);
+
+useEffect(() => {
+    const fetchCryptoData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=true');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        
+        const data = await response.json();
+        setBitcoinData(data[0].current_price);
+        setBitcoinDayChange(data[0].price_change_percentage_24h);
+      } catch (err) {
+        setError(err.message);
+        console.error('Error fetching crypto data:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchCryptoData();
+  }, []);
   
   // Parallax effect on scroll
   useEffect(() => {
@@ -154,8 +180,9 @@ export default function CreativeCryptoHero() {
                 <div className="flex justify-between items-center">
                   <p className="text-gray-500">Total Balance</p>
                   <div className="flex items-center bg-emerald-50 text-emerald-600 text-xs px-2 py-1 rounded">
-                    <ArrowUpRight size={12} className="mr-1" />
-                    <span>+5.3%</span>
+                  <ArrowUpRight size={12} className={`mr-1 ${bitcoinDayChange >= 0 ? 'text-green-500' : 'text-red-500'}`} />
+<span>{bitcoinDayChange.toLocaleString()} %</span>
+
                   </div>
                 </div>
                 <h2 className="text-3xl font-bold">
@@ -179,7 +206,7 @@ export default function CreativeCryptoHero() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="font-medium">${currentPrice.toLocaleString()}</p>
+                    <p className="font-medium">${bitcoinData.toLocaleString()}</p>
                     <p className={`text-xs ${priceDirection > 0 ? 'text-emerald-600' : 'text-red-500'}`}>
                       {priceDirection > 0 ? '+' : ''}{(priceDirection * 1.4).toFixed(2)}%
                     </p>
@@ -225,8 +252,8 @@ export default function CreativeCryptoHero() {
               {/* Enhanced floating notification */}
               <div className="absolute -top-4 -right-4 bg-white py-2 px-3 rounded-lg shadow-lg border border-gray-100 text-xs flex items-center animate-pulse">
                 <div className="bg-emerald-500 h-2 w-2 rounded-full mr-2"></div>
-                BTC up 5.3% today
-              </div>
+                {bitcoinDayChange >= 0 ? 'BTC up' : 'BTC down'} {bitcoinDayChange.toLocaleString()} % today
+                </div>
             </div>
             
             {/* Enhanced decorative elements */}
