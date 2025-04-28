@@ -1,4 +1,5 @@
-# Crypto Dashboard Website
+# Crypto Dashboard Website (NOT FINISHED)
+
 A simple React-based cryptocurrency dashboard application that allows users to track and view real-time cryptocurrency prices. This project uses Vite for fast development and includes ESLint configuration for code quality.
 
 # Features
