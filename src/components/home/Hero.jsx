@@ -4,10 +4,8 @@ import { ChevronRight, Eye, EyeOff, ArrowRight, ArrowUpRight, ChevronDown, Menu 
 export default function CreativeCryptoHero() {
   const [isHovered, setIsHovered] = useState(false);
   const [hideBalance, setHideBalance] = useState(false);
-  const [currentPrice, setCurrentPrice] = useState(42361);
   const [priceDirection, setPriceDirection] = useState(1);
   const [scrolled, setScrolled] = useState(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solanaData, setSolanaData] = useState([]);
   const [bitcoinData, setBitcoinData] = useState([]);
   const [bitcoinDayChange, setBitcoinDayChange] = useState([]);

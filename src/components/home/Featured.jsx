@@ -218,7 +218,7 @@ const CryptoCard = () => {
             <div className="text-center mt-4">
             <button 
   className="mt-4 px-6 py-2 bg-gradient-to-r from-gray-700 to-gray-800 text-white font-semibold rounded-lg shadow-lg transform transition-all duration-300 hover:bg-gradient-to-r hover:from-gray-600 hover:to-gray-700 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
-  onClick={() => navigate(`/coins/${crypto.name}`)} 
+  onClick={() => navigate(`/coin/${crypto.name}`)} 
 >
   View Details
 </button>
