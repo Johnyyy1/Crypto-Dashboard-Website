@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';  // No need for BrowserRouter here
+import { Route, Routes } from 'react-router-dom';
+import { useState } from 'react'; 
 import Navbar from './components/layout/Navbar';
 import CreativeCryptoHero from './components/home/Hero';
 import Featured from './components/home/Featured';
@@ -7,6 +7,7 @@ import SignUp from './components/sign/SignUp';
 import SignIn from './components/sign/SignIn';
 import Footer from './components/layout/Footer';
 import CoinDetail from './components/home/CoinDetail';
+import Dashboard from './components/NavPages/Dashboard';
 
 export default function App() {
   const [showSignUp, setShowSignUp] = useState(false);
@@ -33,13 +34,23 @@ export default function App() {
         onSignInClick={handleOpenSignIn} 
         onSignUpClick={handleOpenSignUp} 
       />
-      <CreativeCryptoHero />
-      <Featured />
-      <Footer />
-
       <Routes>
-        <Route path="/coin/:id" element={<CoinDetail />} />  {/* Coin details route */}
+        {/* Add route for the homepage */}
+        <Route path="/" element={
+          <>
+            <CreativeCryptoHero />
+            <Featured />
+          </>
+        } />
+        <Route path="/coin/:id" element={<CoinDetail />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/cryptocurrenies" element={<CoinDetail />} />
+        <Route path="/market" element={<CoinDetail />} />
+        <Route path="/cryptocurrenies" element={<CoinDetail />} />
+        <Route path="/news" element={<CoinDetail />} />
       </Routes>
+      
+      <Footer />
 
       {/* Sign Up Modal */}
       {showSignUp && (

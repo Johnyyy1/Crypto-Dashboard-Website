@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { TrendingUp, Menu, X, ChevronDown, Search } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import Dashboard from '../NavPages/Dashboard';
 
 export default function Navbar({ onSignInClick, onSignUpClick }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -98,8 +99,8 @@ export default function Navbar({ onSignInClick, onSignUpClick }) {
 
           {/* Other menu items */}
           <div className="flex items-center space-x-8">
-            <Link to="/dashboard" className="text-gray-700 hover:text-black font-medium transition-colors">
-              Dashboard
+          <Link to="/dashboard" className="text-gray-700 hover:text-black font-medium transition-colors">
+             Dashboard
             </Link>
             <div className="relative">
               <button 
@@ -183,7 +184,7 @@ export default function Navbar({ onSignInClick, onSignUpClick }) {
           </form>
           
           <div className="flex flex-col space-y-4">
-            <Link to="/dashboard" className="text-gray-700 font-medium hover:text-black py-2 border-b border-gray-100" onClick={() => setMobileMenuOpen(false)}>
+            <Link to="/dashboard" className="text-gray-700 font-medium hover:text-black py-2 border-b border-gray-100" element ={<Dashboard />} onClick={() => setMobileMenuOpen(false)}>
               Dashboard
             </Link>
             
